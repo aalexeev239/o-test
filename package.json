@@ -3,14 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "devDependencies": {
     "browser-sync": "^2.13.0",
+    "del": "^2.2.1",
     "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
     "gulp-load-plugins": "^1.2.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^6.1.1",
-    "postcss-cssnext": "^2.7.0"
+    "postcss-cssnext": "^2.7.0",
+    "run-sequence": "^1.2.2",
+    "stream-combiner2": "^1.1.1"
   }
 }
