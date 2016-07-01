@@ -6,3 +6,4 @@ tmp
 .grunt
 .DS_Store
 ftppass.json
+.idea

@@ -1,3 +1,127 @@
-body {
-	background-color: #f0f;
+@import "normalize.css";
+
+:root {
+  --fz_base: 15px;
+  --lh-base: 1.2;
+
+  --c_base: #333;
+
+  --bd_base: #bababa;
+
+  --bg_cell: #f2f2f2;
+  --bg_active: #ffc;
 }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: var(--fz_base);
+  line-height: var(--lh_base);
+  color: var(--c_base);
+}
+
+.page {
+  width: 1200px;
+  margin: 0 auto;
+
+  &__title {
+    font-size: calc(var(--fz_base) * 2);
+    margin: 1.5em 0;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  &__subtitle {
+    font-size: calc(var(--fz_base) * 1.5);
+    margin: 1em 0;
+    font-weight: 400;
+  }
+
+  &__area {
+    height: 200px;
+    overflow: auto;
+    margin: 15px 0;
+
+    border: 2px solid #434343;
+    background: #fefefe;
+    padding: 8px;
+  }
+}
+
+
+
+
+.table-wrap {
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--bd_base);
+
+  th {
+    padding: 12px 8px;
+    /* border: 1px solid var(--bd_base); */
+    text-align: left;
+    border-bottom: 1px solid var(--bd_base);
+    border-top: 1px solid var(--bd_base);
+  }
+
+  td {
+    padding: 2px 8px;
+    /* border: 1px solid var(--bd_base); */
+
+    position: relative;
+    cursor: pointer;
+
+
+    &:hover::after {
+      content: '';
+      position: absolute;
+      background-color: var(--bg_active);
+      top: -5000px;
+      height: 10000px;
+      left: 0;
+      right: 0;
+      z-index: -1;
+      position: none;
+    }
+    &:active::after {
+       background-color: color(var(--bg_active) b(5%));
+     }
+  }
+
+  .mod-active-col {
+    position: relative;
+  }
+
+  .mod-active-col::after {
+    content: '';
+    position: absolute;
+    background-color: color(var(--bg_active) b(5%));
+    top: -1000px;
+    height: 10000px;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    position: none;
+  }
+
+  tr:nth-child(even) td:first-child::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2000px;
+    background: var(--bg_cell);
+    z-index: -2;
+  }
+
+
+}
+

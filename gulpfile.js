@@ -48,9 +48,11 @@ gulp.task('css', function() {
     gulp.src(config.css),
     $.plumber({ errorHandler: $.notify.onError("Error: <%= error.message %>")}),
     $.postcss([
+      $.postcssImport(),
       $.postcssCssnext({
         browsers: ['last 1 version']
-      })
+      }),
+      $.postcssNested
     ]),
     gulp.dest(config.dist + '/css/'),
     browserSync.stream()
