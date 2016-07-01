@@ -28,7 +28,7 @@
         }
         onSuccess(data);
       }
-    }
+    };
 
     xhr.send();
   }

@@ -1,4 +1,5 @@
 'use strict';
+
 (function() {
 
   var templateElement = document.getElementById('table-row');
@@ -11,17 +12,18 @@
     tr = templateElement.querySelector('tr');
   }
 
-  function Table(elem, data) {
+  function Table(elem, data, callback) {
     this.elem = elem;
+    this.data = data;
+    this.callback = callback;
+
     this.thead = this.elem.tHead.children[0];
     this.tbody = elem.tBodies[0];
-    this.data = data;
 
     this._selectedCols = {};
-    this._initSelectedRows();
+    this._initSelectedCols();
 
     this._onInsideTableClick = this._onInsideTableClick.bind(this);
-
 
     this._render();
     this._attachListeners();
@@ -29,7 +31,7 @@
 
   Table.prototype = {
 
-    _initSelectedRows: function () {
+    _initSelectedCols: function () {
       var dataExample = this.data[0];
       var self = this;
 
@@ -41,13 +43,11 @@
           self._selectedCols[key] = false;
         }
       });
-
-
     },
+
 
     _render: function() {
       var self = this;
-
 
       this.data.forEach(function (dataRow) {
         var row = self._getRow(dataRow)
@@ -59,10 +59,10 @@
     _getRow: function(dataRow) {
       var newTr = tr.cloneNode(true);
       var newHTML = newTr.innerHTML;
-      var dateFormated = this._formatDate(dataRow.date);
+      var dateFormatted = this._formatDate(dataRow.date);
 
-      newHTML = newHTML.replace('{{datetime}}', dateFormated.dateTime);
-      newHTML = newHTML.replace('{{datetime_human}}', dateFormated.dateTimeHuman);
+      newHTML = newHTML.replace('{{datetime}}', dateFormatted.dateTime);
+      newHTML = newHTML.replace('{{datetime_human}}', dateFormatted.dateTimeHuman);
 
       Object.keys(dataRow).forEach(function(key) {
         if (key === 'date') return;
@@ -103,7 +103,6 @@
     },
 
 
-
     _toggleColumn: function(columnId) {
       if (columnId === 'date') return;
 
@@ -117,12 +116,25 @@
 
       var self = this;
 
-      Object.keys(this._selectedCols).forEach(function(id){
-
-        var th = self.thead.querySelector('th[data-row="'+ id + '"]');
-
-        th.classList.toggle('mod-active-col', self._selectedCols[id]);
+      //  set actual columns in markup
+      Object.keys(this._selectedCols).forEach(function(key){
+        var th = self.thead.querySelector('th[data-row="'+ key + '"]');
+        th.classList.toggle('mod-active-col', self._selectedCols[key]);
       });
+
+      // get actual data
+      var filteredData = this.data.map(function (item) {
+        var res = {};
+        Object.keys(self._selectedCols).forEach(function(key){
+
+          if (self._selectedCols[key]) {
+            res[key] = item[key];
+          }
+        });
+        return res;
+      });
+
+      this.callback(filteredData);
     },
 
 
@@ -141,9 +153,6 @@
 
       var day = date.getDate();
       var dd = day < 10 ? '0' + day : day;
-
-
-      var dateTime = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
 
       return {
         dateTime: year + '-' + mm + '-' + dd,

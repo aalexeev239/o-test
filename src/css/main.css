@@ -1,8 +1,8 @@
 @import "normalize.css";
 
 :root {
-  --fz_base: 15px;
-  --lh-base: 1.2;
+  --fz_base: 14px;
+  --lh-base: 1;
 
   --c_base: #333;
 
@@ -44,6 +44,9 @@ body {
     border: 2px solid #434343;
     background: #fefefe;
     padding: 8px;
+
+    font-size: 12px;
+    line-height: 1.5;
   }
 }
 
@@ -63,6 +66,7 @@ body {
   border-collapse: collapse;
   border: 1px solid var(--bd_base);
 
+
   th {
     padding: 12px 8px;
     /* border: 1px solid var(--bd_base); */
@@ -77,22 +81,6 @@ body {
 
     position: relative;
     cursor: pointer;
-
-
-    &:hover::after {
-      content: '';
-      position: absolute;
-      background-color: var(--bg_active);
-      top: -5000px;
-      height: 10000px;
-      left: 0;
-      right: 0;
-      z-index: -1;
-      position: none;
-    }
-    &:active::after {
-       background-color: color(var(--bg_active) b(5%));
-     }
   }
 
   .mod-active-col {
@@ -102,9 +90,9 @@ body {
   .mod-active-col::after {
     content: '';
     position: absolute;
-    background-color: color(var(--bg_active) b(5%));
+    background-color: var(--bg_active);
     top: -1000px;
-    height: 10000px;
+    height: 21000px; /* 20 * 1000 */
     left: 0;
     right: 0;
     z-index: -1;
