@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/main.css" rel="stylesheet">
+</head>
+<body>
+<div class="page">
+
+  <p class="page__subtitle">
+    Стенд для данных
+  </p>
+
+  <div class="page__area" id="desk">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, ut.
+  </div>
+
+  <p class="page__subtitle">Таблица</p>
+
+  <div class="page__table">
+    <div class="table-wrap">
+      <table class="table" id="table">
+        <thead>
+        <tr>
+          <th data-row="id">Id</th>
+          <th data-row="date" class="mod-active-col">Date</th>
+          <th data-row="a">a</th>
+          <th data-row="b">b</th>
+          <th data-row="c">c</th>
+          <th data-row="d">d</th>
+          <th data-row="e">e</th>
+          <th data-row="f">f</th>
+          <th data-row="g">g</th>
+          <th data-row="h">h</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<template id="table-row">
+  <tr>
+    <td>{{id}}</td>
+    <td><time datetime="{{datetime}}"></time>{{datetime_human}}</td>
+    <td>{{a}}</td>
+    <td>{{b}}</td>
+    <td>{{c}}</td>
+    <td>{{d}}</td>
+    <td>{{e}}</td>
+    <td>{{f}}</td>
+    <td>{{g}}</td>
+    <td>{{h}}</td>
+  </tr>
+</template>
+
+<script src="js/main.js"></script>
+</body>
+</html>

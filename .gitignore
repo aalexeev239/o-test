@@ -1,7 +1,6 @@
 node_modules
 *.log
 build
-dist
 tmp
 .grunt
 .DS_Store
